@@ -19,7 +19,9 @@ import { CustomButtonContainer } from "./custom-button.styles";
 
 // using styled component we handle button based on props
 const Button = ({ children, ...props }) => (
-  <CustomButtonContainer {...props}>{children}</CustomButtonContainer>
+  <CustomButtonContainer {...props}>
+    {children}
+  </CustomButtonContainer>
 );
 
 export default Button;
