@@ -11,7 +11,8 @@ import CollectionPage from "../collection/collection.component";
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
 
 import { createStructuredSelector } from "reselect";
-import { fetchCollectionsStartAsyc } from "../../redux/shop/shop.actions";
+// import { fetchCollectionsStartAsyc } from "../../redux/shop/shop.actions";
+// import { fetchCollectionsStart } from "../../redux/shop/shop.saga";
 import {
   selectIsCollectionsFetching,
   selectIsCollectionsLoaded
@@ -19,6 +20,7 @@ import {
 
 import CollectionOverviewContainer from "../../components/collection-overview/collection-overview.container";
 import CollectionPageContainer from "../collection/collection.container";
+import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 //import collectionOverviewComponent from "../../components/collection-overview/collection-overview.component";
 
 //const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
@@ -43,8 +45,8 @@ class ShopPage extends React.Component {
     //   updateCollections(collectionsMap);
     //   this.setState({ loading: false });
     // });
-    const { fetchCollectionsStartAsyc } = this.props;
-    fetchCollectionsStartAsyc();
+    const { fetchCollectionsStart } = this.props;
+    fetchCollectionsStart();
   }
   render() {
     const { match } = this.props;
@@ -91,7 +93,8 @@ class ShopPage extends React.Component {
 // });
 
 const mapDispatchToProps = dispatch => ({
-  fetchCollectionsStartAsyc: () => dispatch(fetchCollectionsStartAsyc())
+  // fetchCollectionsStartAsyc: () => dispatch(fetchCollectionsStartAsyc())
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 });
 
 // handling dispatchin now in action file itself
