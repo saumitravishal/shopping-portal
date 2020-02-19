@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import CollectionOverview from "../../components/collection-overview/collection-overview.component";
@@ -26,34 +26,37 @@ import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 //const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
 //const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
-class ShopPage extends React.Component {
-  // constructor() {
-  //   super();
+// class ShopPage extends React.Component {
+//   // constructor() {
+//   //   super();
 
-  //   this.state = {
-  //     loading: true
-  //   };
-  // }
-  // unsubscribeFromSnapshot = null;
+//   //   this.state = {
+//   //     loading: true
+//   //   };
+//   // }
+//   // unsubscribeFromSnapshot = null;
 
-  componentDidMount() {
-    // handle asynchronus code in action file itself
-    // const { updateCollections } = this.props;
-    // const collectionRef = firestore.collection("collections");
-    // collectionRef.get().then(snapshot => {
-    //   const collectionsMap = convertCollectionSnapshotToMap(snapshot);
-    //   updateCollections(collectionsMap);
-    //   this.setState({ loading: false });
-    // });
-    const { fetchCollectionsStart } = this.props;
+//   componentDidMount() {
+//     // handle asynchronus code in action file itself
+//     // const { updateCollections } = this.props;
+//     // const collectionRef = firestore.collection("collections");
+//     // collectionRef.get().then(snapshot => {
+//     //   const collectionsMap = convertCollectionSnapshotToMap(snapshot);
+//     //   updateCollections(collectionsMap);
+//     //   this.setState({ loading: false });
+//     // });
+//     const { fetchCollectionsStart } = this.props;
+//     fetchCollectionsStart();
+//   }
+
+const ShopPage = ({ fetchCollectionsStart, match }) => {
+  useEffect(() => {
     fetchCollectionsStart();
-  }
-  render() {
-    const { match } = this.props;
+  }, [fetchCollectionsStart]);
 
-    return (
-      <div className="shop-page">
-        {/* <Route
+  return (
+    <div className="shop-page">
+      {/* <Route
           exact
           path={`${match.path}`}
           render={props => (
@@ -63,16 +66,16 @@ class ShopPage extends React.Component {
             />
           )}
         /> */}
-        <Route
-          exact
-          path={`${match.path}`}
-          component={CollectionOverviewContainer}
-        />
-        <Route
-          path={`${match.path}/:collectionId`}
-          component={CollectionPageContainer}
-        />
-        {/* <Route
+      <Route
+        exact
+        path={`${match.path}`}
+        component={CollectionOverviewContainer}
+      />
+      <Route
+        path={`${match.path}/:collectionId`}
+        component={CollectionPageContainer}
+      />
+      {/* <Route
           path={`${match.path}/:collectionId`}
           render={props => (
             <CollectionPageWithSpinner
@@ -81,10 +84,9 @@ class ShopPage extends React.Component {
             />
           )}
         /> */}
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 // Handle through hoc container file
 // const mapStateToProps = createStructuredSelector({
